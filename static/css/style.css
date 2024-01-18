@@ -37,14 +37,14 @@
 	display: flex; /* 如果不需要媒体库标题显示, 请将flex改为none */
 	width: 100%;
 	height: 100%;
-	padding: inherit;
+	padding: 0;
 	background-color: rgba(0, 0, 0, .5);
 	font-weight: bolder;
 	font-size: larger;
 	border-radius: 0.3em;
 	transition: .2s;
-	opacity: 1;
-    align-items: center;
+	opacity: 0;
+    /* align-items: center; */
 }
 
 .view:not(.hide) .section0 .backdropCard:hover .cardText {
@@ -219,6 +219,7 @@
 	transition-delay: .8s;
 }
 
+/* Banner Title Style */
 .misty-banner-info h1 {
 	color: #fff !important;
 	font-size: clamp(2rem, -.362rem + 6.75vw, 4.7rem);
@@ -233,6 +234,7 @@
 	overflow: hidden;
 }
 
+/* Banner Brief Style */
 .misty-banner-info p {
 	color: #fff !important;
 	font-size: clamp(.6rem, .4rem + 1vw, 1.6rem);
