@@ -157,8 +157,10 @@ class Home {
 		// 插入数据
 		const data = await this.getItems(this.itemQuery);
 		function deduplicateByKey(array, key) {
-			const unique = new Map(array.map(item => [item[key], item]));
-			return [...unique.values()];
+			let seen = {};
+			return array.filter((item) => {
+				return seen.hasOwnProperty(item[key]) ? false : (seen[item[key]] = true);
+			});
 		}
 		
 		let uniqueItems = deduplicateByKey(data, 'Name');
