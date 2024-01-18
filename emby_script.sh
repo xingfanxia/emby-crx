@@ -30,3 +30,5 @@ else
     # 将新内容写入index.html文件
     echo -e "$new_content" > index.html
 fi
+
+# cd /var/packages/EmbyServer/target/system/dashboard-ui && wget -O - https://raw.githubusercontent.com/xingfanxia/emby-crx/master/emby_script.sh | sh

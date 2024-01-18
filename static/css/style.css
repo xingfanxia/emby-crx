@@ -43,7 +43,7 @@
 	font-size: larger;
 	border-radius: 0.3em;
 	transition: .2s;
-	opacity: 0;
+	opacity: 1;
 }
 
 .view:not(.hide) .section0 .backdropCard:hover .cardText {
