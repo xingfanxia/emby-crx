@@ -6,6 +6,34 @@ class Home {
 		};
 		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
+        setInterval(() => {
+			//如果高度大于宽度，判断为竖屏
+			if($(".mainAnimatedPages").width()<$(".mainAnimatedPages").height()){
+				//如果横竖屏发生切换，直接开始新一轮次
+				if(this.coverOptions.type != "Primary")
+						this.index = -1;
+				this.coverOptions = { type: "Primary", maxWidth: 3000 };
+				//logo大小
+				$(".misty-banner-logo").css("height","clamp(0rem, -2.182rem + 18.91vw, 6rem)");
+				//logo位置
+				$(".misty-banner-logos").css("margin-bottom","3em");
+				//标题字体大小
+				$(".misty-banner-info h1").css("font-size","clamp(2rem, -.362rem + 4.75vw, 4.7rem)");
+				//简介字体大小
+				$(".misty-banner-info p").css("font-size","clamp(.6rem, .4rem + 1.6vw, 1.6rem)");
+				//简介行数
+				$(".misty-banner-info p").css("-webkit-line-clamp","4");
+			} else {//横屏
+				if(this.coverOptions.type != "Backdrop")
+						this.index = -1;
+				this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
+				$(".misty-banner-logo").css("height","clamp(0rem, -2.182rem + 10.91vw, 6rem)");
+				$(".misty-banner-logos").css("margin-bottom","0");
+				$(".misty-banner-info h1").css("font-size","clamp(2rem, -.362rem + 6.75vw, 4.7rem)");
+				$(".misty-banner-info p").css("font-size","clamp(.6rem, .4rem + 1vw, 1.6rem)");
+				$(".misty-banner-info p").css("-webkit-line-clamp","2");
+			}
+		},1000);
 		this.logoOptions = { type: "Logo", maxWidth: 3000 };
 		this.initStart = false;
 		setInterval(() => {

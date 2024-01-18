@@ -268,7 +268,7 @@
 	transform: scale(.95);
 }
 
-@media screen and (max-width: 62.5em) {
+/* @media screen and (max-width: 62.5em) {
 	.misty-banner-info button {
 		margin-top: 0;
 	}
@@ -288,7 +288,7 @@
 	.misty-banner-body{
 		opacity: 0;
 	}
-}
+} */
 
 .misty-banner .backdropCard {
 	transition-duration: 0;
