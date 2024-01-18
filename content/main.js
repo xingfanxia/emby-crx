@@ -156,8 +156,15 @@ class Home {
 
 		// 插入数据
 		const data = await this.getItems(this.itemQuery);
-		console.log(data);
-		data.Items.forEach(async (item) => {
+        function deduplicateByKey(array, key) {
+            const unique = new Map(array.map(item => [item[key], item]));
+            return [...unique.values()];
+        }
+        
+        let uniqueItems = deduplicateByKey(data, 'Name');
+        console.log(uniqueItems);
+
+		uniqueItems.Items.forEach(async (item) => {
 			const detail = await this.getItem(item.Id),
 				itemHtml = `
 			<div class="misty-banner-item" id="${detail.Id}">
