@@ -4,7 +4,7 @@ class Home {
 			items: undefined,
 			item: new Map(),
 		};
-		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 30, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 20, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
         setInterval(() => {
 			//如果高度大于宽度，判断为竖屏
@@ -180,7 +180,7 @@ class Home {
             if (!isMatchPorn) {
                 $(".misty-banner-body").append(itemHtml);
             }
-			console.log(item.Id, detail, isMatchPorn);
+			// console.log(item.Id, detail, isMatchPorn);
 		});
 
 		// 只判断第一张海报加载完毕, 优化加载速度
