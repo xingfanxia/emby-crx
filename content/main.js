@@ -6,7 +6,7 @@ class Home {
 		};
 		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 20, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true, MinCommunityRating: 7 };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
-        setInterval(() => {
+		setInterval(() => {
 			//如果高度大于宽度，判断为竖屏
 			if($(".mainAnimatedPages").width()<$(".mainAnimatedPages").height()){
 				//如果横竖屏发生切换，直接开始新一轮次
@@ -156,13 +156,13 @@ class Home {
 
 		// 插入数据
 		const data = await this.getItems(this.itemQuery);
-        function deduplicateByKey(array, key) {
-            const unique = new Map(array.map(item => [item[key], item]));
-            return [...unique.values()];
-        }
-        
-        let uniqueItems = deduplicateByKey(data, 'Name');
-        console.log(uniqueItems);
+		function deduplicateByKey(array, key) {
+			const unique = new Map(array.map(item => [item[key], item]));
+			return [...unique.values()];
+		}
+		
+		let uniqueItems = deduplicateByKey(data, 'Name');
+		console.log(uniqueItems);
 
 		uniqueItems.Items.forEach(async (item) => {
 			const detail = await this.getItem(item.Id),
