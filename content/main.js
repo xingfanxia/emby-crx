@@ -4,7 +4,7 @@ class Home {
 			items: undefined,
 			item: new Map(),
 		};
-		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 20, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 20, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true, MinCommunityRating: 7 };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
         setInterval(() => {
 			//如果高度大于宽度，判断为竖屏
@@ -173,14 +173,11 @@ class Home {
 			<img id="${detail.Id}" draggable="false" loading="auto" decoding="lazy" class="misty-banner-logo" data-banner="img-title" alt="Logo" src="${await this.getImageUrl(detail.Id, this.logoOptions)}">
 			`;
 			
-            const isMatchPorn =/^[a-zA-Z]+-\d+\s/.test(detail.Name);
-			if (detail.ImageTags && detail.ImageTags.Logo && !isMatchPorn) {
+			if (detail.ImageTags && detail.ImageTags.Logo) {
 				$(".misty-banner-logos").append(logoHtml);
 			}
-            if (!isMatchPorn) {
-                $(".misty-banner-body").append(itemHtml);
-            }
-			// console.log(item.Id, detail, isMatchPorn);
+			$(".misty-banner-body").append(itemHtml);
+			// console.log(item.Id, detail);
 		});
 
 		// 只判断第一张海报加载完毕, 优化加载速度
