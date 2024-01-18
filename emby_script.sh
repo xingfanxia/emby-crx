@@ -11,18 +11,20 @@ wget https://raw.githubusercontent.com/xingfanxia/emby-crx/master/static/js/jque
 wget https://raw.githubusercontent.com/xingfanxia/emby-crx/master/static/js/md5.min.js -P emby-crx/
 wget https://raw.githubusercontent.com/xingfanxia/emby-crx/master/content/main.js -P emby-crx/
 
-chown -R emby:emby emby-crx/*
-chmod 644 emby-crx/*
+# chown -R emby:emby emby-crx/*
+# chmod 644 emby-crx/*
+
+cp -r emby-crx/* . && chown -R emby:emby common-utils.js jquery-3.6.0.min.js main.js md5.min.js style.css config.js && chmod 644 common-utils.js jquery-3.6.0.min.js main.js md5.min.js style.css config.js
 
 # 读取index.html文件内容
 content=$(cat index.html)
 
 # 检查index.html是否包含emby-crx
-if grep -q "emby-crx" index.html; then
+if grep -q "main.js" index.html; then
     echo "Index.html already contains emby-crx, skipping insertion."
 else
     # 定义要插入的代码
-    code='<link rel="stylesheet" id="theme-css" href="emby-crx/style.css" type="text/css" media="all" />\n<script src="emby-crx/common-utils.js"></script>\n<script src="emby-crx/jquery-3.6.0.min.js"></script>\n<script src="emby-crx/md5.min.js"></script>\n<script src="emby-crx/main.js"></script>'
+    code='<link rel="stylesheet" id="theme-css" href="style.css" type="text/css" media="all" />\n<script src="common-utils.js"></script>\n<script src="jquery-3.6.0.min.js"></script>\n<script src="md5.min.js"></script>\n<script src="main.js"></script>'
 
     # 在</head>之前插入代码
     new_content=$(echo -e "${content/<\/head>/$code<\/head>}")
