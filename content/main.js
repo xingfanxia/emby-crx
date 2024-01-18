@@ -144,11 +144,15 @@ class Home {
 				logoHtml = `
 			<img id="${detail.Id}" draggable="false" loading="auto" decoding="lazy" class="misty-banner-logo" data-banner="img-title" alt="Logo" src="${await this.getImageUrl(detail.Id, this.logoOptions)}">
 			`;
-			if (detail.ImageTags && detail.ImageTags.Logo) {
+			
+            const isMatchPorn =/^[a-zA-Z]+-\d+\s/.test(detail.Name);
+			if (detail.ImageTags && detail.ImageTags.Logo && !isMatchPorn) {
 				$(".misty-banner-logos").append(logoHtml);
 			}
-			$(".misty-banner-body").append(itemHtml);
-			console.log(item.Id, detail);
+            if (!isMatchPorn) {
+                $(".misty-banner-body").append(itemHtml);
+            }
+			console.log(item.Id, detail, isMatchPorn);
 		});
 
 		// 只判断第一张海报加载完毕, 优化加载速度
