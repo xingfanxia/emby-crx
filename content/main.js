@@ -225,7 +225,7 @@ class Home {
 				$(".misty-banner-logo.active").removeClass("active");
 				$(`.misty-banner-logo[id=${id}]`).addClass("active");
 			}
-		}, 3000);
+		}, 5000); // Banner switching interval
 	}
 
 	/* 初始事件 */
