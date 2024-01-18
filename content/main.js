@@ -4,7 +4,7 @@ class Home {
 			items: undefined,
 			item: new Map(),
 		};
-		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 20, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true, MinCommunityRating: 7 };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 30, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true, MinCommunityRating: 7 };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
 		setInterval(() => {
 			//如果高度大于宽度，判断为竖屏
@@ -157,16 +157,14 @@ class Home {
 		// 插入数据
 		const data = await this.getItems(this.itemQuery);
 		function deduplicateByKey(array, key) {
-			let seen = {};
-			return array.filter((item) => {
-				return seen.hasOwnProperty(item[key]) ? false : (seen[item[key]] = true);
-			});
+			const unique = new Map(array.map(item => [item[key], item]));
+			return [...unique.values()];
 		}
 		
-		let uniqueItems = deduplicateByKey(data, 'Name');
+		let uniqueItems = deduplicateByKey(data.Items, 'Name');
 		console.log(uniqueItems);
 
-		uniqueItems.Items.forEach(async (item) => {
+		uniqueItems.forEach(async (item) => {
 			const detail = await this.getItem(item.Id),
 				itemHtml = `
 			<div class="misty-banner-item" id="${detail.Id}">
