@@ -4,7 +4,7 @@ class Home {
 			items: undefined,
 			item: new Map(),
 		};
-		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "CommunityRating, ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 30, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true, MinCommunityRating: 7 };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Logo,Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "CriticRating, ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 30, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false, HasTmdbId: true, MinCommunityRating: 7 };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000 };
 		setInterval(() => {
 			//如果高度大于宽度，判断为竖屏
